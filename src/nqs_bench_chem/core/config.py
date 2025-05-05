@@ -21,6 +21,7 @@ class Experiment(BaseModel):
     backends: List[str]
     noise_mitigation: List[str] = ["none"]
     geometry_scan: GeometryScan
+    selector: Literal["noon", "entropy", "ranked"] = "noon"
 
     # ---------- helpers ----------
     @classmethod

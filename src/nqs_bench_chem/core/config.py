@@ -7,10 +7,9 @@ from pydantic import BaseModel, Field, model_validator
 
 class GeometryScan(BaseModel):
     """Bond‑length or angle scan definition."""
+
     param: Literal["r", "angle"] = "r"
-    range: str = Field(
-        description="format 'start:stop:step', e.g. '1.4:3.4:0.2'"
-    )
+    range: str = Field(description="format 'start:stop:step', e.g. '1.4:3.4:0.2'")
 
 
 class Experiment(BaseModel):
@@ -34,4 +33,3 @@ class Experiment(BaseModel):
         if self.qubit_budget <= 0:
             raise ValueError("qubit_budget must be > 0")
         return self
-

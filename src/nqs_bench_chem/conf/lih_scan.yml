@@ -1,0 +1,10 @@
+system: LiH
+basis_set: sto-3g
+qubit_budget: 12
+ansatz: [UCCSD]
+optimiser: [COBYLA]
+backends: [qiskit_aer_statevector]
+noise_mitigation: [none]
+geometry_scan:
+  param: r
+  range: 1.4:3.4:0.2

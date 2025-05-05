@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nqs-bench-chem"
+dynamic = ["version"]
+description = "Noise‑aware, active‑space VQE benchmark harness"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "EBB2675", email = "esmaboydas4@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+
+dependencies = [
+  "pyscf>=2.5",
+  "openfermion>=1.6",
+ "qiskit-nature>=0.7,<0.8", 
+  "typer[all]>=0.12",
+  "pydantic>=2.7",
+  "numpy>=1.26",
+  "scipy>=1.12",
+  "pandas>=2.2",
+"pyyaml>=6"  
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "black",
+  "ruff"
+]
+
+[tool.hatch.version]
+path = "src/nqs_bench_chem/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/nqs_bench_chem tests}"
+
+[tool.coverage.run]
+source_pkgs = ["nqs_bench_chem", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/nqs_bench_chem/__about__.py",
+]
+
+[tool.coverage.paths]
+nqs_bench_chem = ["src/nqs_bench_chem", "*/nqs-bench-chem/src/nqs_bench_chem"]
+tests = ["tests", "*/nqs-bench-chem/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
